@@ -6,14 +6,15 @@ function App() {
       <Header />
       <main className="mx-10 my-15 justify-center flex">
         <div className="flex flex-col gap-2">
-          <h1 className="text-center">Insira uma imagem</h1>
           <input
             type="file"
             name="image"
             className="p-4 border"
             accept=".png, .jpg, .jpeg, .webp"
           ></input>
-          <button className="border p-2 cursor-pointer">Enviar</button>
+          <button className="p-2 cursor-pointer bg-secundario text-white rounded-sm font-botoes text-lg hover:scale-110 duration-300 transition">
+            Enviar
+          </button>
         </div>
       </main>
     </div>

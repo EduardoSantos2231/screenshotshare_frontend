@@ -9,19 +9,19 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-green-50 p-10 flex relative">
-      <span className="mr-auto">Logo vai aqui</span>
+    <header className="bg-primaria text-white flex relative">
+      <span className="mr-auto size-25 items-center flex ml-5">logo aqui</span>
 
-      <ul className="gap-2 hidden md:flex ">
+      <ul className="gap-2 hidden md:flex items-center mr-5">
         <li>upload</li>
         <li>criador</li>
       </ul>
 
-      <button className="md:hidden" onClick={changeItsOpen}>
+      <button className="md:hidden mr-5" onClick={changeItsOpen}>
         {itsOpen ? <CircleX size={"1.6rem"} /> : <Menu size={"1.6rem"} />}
       </button>
       {itsOpen && (
-        <ul className="flex gap-3 md:hidden flex-col absolute top-full right-0 bg-green-50 p-10 text-lg shadow-sm ">
+        <ul className="flex gap-3 md:hidden flex-col absolute top-full right-0 bg-primaria  p-10 text-lg shadow-sm items-center">
           <li>upload</li>
           <li>criador</li>
         </ul>

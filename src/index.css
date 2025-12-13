@@ -1,1 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=BBH+Hegarty&family=Sixtyfour:SCAN@-24&display=swap");
 @import "tailwindcss";
+
+@theme {
+  --color-secundario: #7b2cbf;
+  --color-destaque: #f72585;
+  --color-primaria: #0b0c15;
+  --font-botoes: "Sixtyfour", sans-serif;
+  --font-titulo: "BBH Hegarty", sans-serif;
+}
