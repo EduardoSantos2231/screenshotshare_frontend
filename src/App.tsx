@@ -14,7 +14,9 @@ function App() {
     const stored = localStorage.getItem("links");
     return stored ? JSON.parse(stored) : [];
   };
+
   const inputRef = useRef<HTMLInputElement | null>(null);
+
   const [file, setFile] = useState<File | null>(null);
   const [redirectLinks, setRedirectLinks] = useState<
     { publicId: string; shareUrl: string }[]
