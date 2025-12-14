@@ -1,11 +1,14 @@
 import { Copy } from "lucide-react";
 import { useState } from "react";
 import FeedbackPopup from "./FeedBackPopup";
+import { Trash } from "lucide-react";
+
 interface Link {
   link: string;
+  onDelete: () => void;
 }
 
-export default function ({ link }: Link) {
+export default function ({ link, onDelete }: Link) {
   const [copied, setCopied] = useState(false);
   const copyToClipboard = async () => {
     try {
@@ -16,12 +19,11 @@ export default function ({ link }: Link) {
     }
   };
   return (
-    <div className="flex gap-3 p-3 bg-slate-100 rounded-sm flex-col">
-      <div className="flex gap-2">
-        <Copy onClick={copyToClipboard} />
-        <a href={link}>{link}</a>
-        {copied && <FeedbackPopup />}
-      </div>
+    <div className="flex gap-3 p-3 bg-slate-100 rounded-sm w-fit flex-row">
+      <Copy onClick={copyToClipboard} />
+      <a href={link}>{link}</a>
+      <Trash onClick={onDelete} />
+      {copied && <FeedbackPopup />}
     </div>
   );
 }
