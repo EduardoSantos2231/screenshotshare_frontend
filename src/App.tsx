@@ -10,19 +10,24 @@ interface ResponseData {
 }
 
 function App() {
-  const getLinks = () => {
+  const getLinksFromLocalStorage = () => {
     const stored = localStorage.getItem("links");
     return stored ? JSON.parse(stored) : [];
   };
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [file, setFile] = useState<File | null>(null);
-  const [redirectLink, setRedirectLink] =
-    useState<{ publicId: string; shareUrl: string }[]>(getLinks());
+  const [redirectLinks, setRedirectLinks] = useState<
+    { publicId: string; shareUrl: string }[]
+  >(getLinksFromLocalStorage());
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const fileList = e.target.files;
     if (fileList === null || fileList.length === 0) return;
     setFile(fileList[0]);
+  };
+
+  const clearInput = () => {
+    inputRef.current ? (inputRef.current.value = "") : "";
   };
 
   const handleUpload = async () => {
@@ -36,11 +41,11 @@ function App() {
       });
       if (response.ok) {
         const data = (await response.json()) as ResponseData;
-        setRedirectLink((prev) => [
+        setRedirectLinks((prev) => [
           ...prev,
           { publicId: data.publicId, shareUrl: data.shareUrl },
         ]);
-        inputRef.current ? (inputRef.current.value = "") : "";
+        clearInput();
       }
     } catch (e) {
       console.log(e);
@@ -48,12 +53,12 @@ function App() {
   };
 
   useEffect(() => {
-    const parsedData = JSON.stringify(redirectLink);
+    const parsedData = JSON.stringify(redirectLinks);
     localStorage.setItem("links", parsedData);
-  }, [redirectLink]);
+  }, [redirectLinks]);
 
   const deleteLink = (publicId: string) => {
-    setRedirectLink((prev) =>
+    setRedirectLinks((prev) =>
       prev.filter((data) => data.publicId !== publicId),
     );
   };
@@ -81,8 +86,8 @@ function App() {
         </div>
       </main>
       <section className="flex justify-center my-10 flex-col gap-2 items-center">
-        {redirectLink.length > 0 &&
-          redirectLink.map((info, index) => (
+        {redirectLinks.length > 0 &&
+          redirectLinks.map((info, index) => (
             <LinkContainer
               link={info.shareUrl}
               key={index}
