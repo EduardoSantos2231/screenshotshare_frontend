@@ -10,7 +10,9 @@ export default function Header() {
 
   return (
     <header className="bg-primaria text-white flex relative">
-      <span className="mr-auto size-25 items-center flex ml-5">logo aqui</span>
+      <span className="mr-auto size-25 items-center flex ml-5 font-botoes text-sm md:text-lg">
+        SsShare
+      </span>
 
       <ul className="gap-2 hidden md:flex items-center mr-5">
         <li>upload</li>
