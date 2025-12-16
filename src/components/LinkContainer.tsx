@@ -19,9 +19,11 @@ export default function ({ link, onDelete }: Link) {
     }
   };
   return (
-    <div className="flex gap-3 p-3 bg-slate-100 rounded-sm w-fit flex-row">
+    <div className="flex gap-3 bg-slate-100 rounded-sm w-fit flex-row border border-dashed border-zinc-400 p-4">
       <Copy onClick={copyToClipboard} />
-      <a href={link}>{link}</a>
+      <a href={link} className="underline">
+        {link}
+      </a>
       <Trash onClick={onDelete} />
       {copied && <FeedbackPopup />}
     </div>
